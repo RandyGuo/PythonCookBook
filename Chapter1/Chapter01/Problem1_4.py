@@ -5,5 +5,26 @@ Created on May 17, 2016
 @author: Administrator
 '''
 
-if __name__ == '__main__':
-    print 'Successful'
+import heapq
+
+nums = [1,8,2,23,7,-4,18,23,42,37,2]
+print heapq.nlargest(3,nums)
+print heapq.nsmallest(3,nums)
+heap = list(nums)
+heapq.heapify(heap)
+print 'heap: ',heap
+
+#Both functions also accept a key parameter that allows them to be used with more complicated data structures.
+portfolio = [
+    {'name':'IBM','shares':100,'price':91.1},
+    {'name':'AAPL','shares':50,'price':543.22},
+    {'name':'FB','shares':200,'price':21.09},
+    {'name':'HPQ','shares':35,'price':31.75},
+    {'name':'YHOO','shares':45,'price':16.35},
+    {'name':'ACME','shares':75,'price':115.65}
+]
+
+cheap = heapq.nsmallest(3,portfolio,key=lambda s: s['price'])
+print 'cheapest 3 :',cheap
+expensive = heapq.nlargest(3,portfolio,key=lambda s:s['price'])
+print 'expensivest 3 :',expensive
